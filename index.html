@@ -65,7 +65,7 @@
   tbody td{height:19px;border-right:1px solid var(--grid-line);border-bottom:1px solid var(--grid-line);padding:0;vertical-align:top;}
   tbody td:last-child{border-right:none;}
   tbody tr.hourline td{border-bottom:1px solid var(--line);}
-  td.time{background:var(--time-bg);color:var(--time-ink);font-weight:700;font-size:10.5px;white-space:nowrap;text-align:center;width:96px;vertical-align:middle;}
+  td.time{background:var(--time-bg);color:var(--time-ink);font-weight:700;font-size:10px;white-space:nowrap;text-align:center;width:120px;vertical-align:middle;}
   td.time.half{color:var(--ink-soft);font-weight:500;font-size:9px;}
   .box{position:relative;height:100%;margin:3px;border:2px solid var(--bx,#ccc);background:var(--bxf,#fff);border-radius:9px;padding:6px 7px;display:flex;flex-direction:column;justify-content:center;text-align:center;}
   .box .title{font-size:12px;font-weight:700;line-height:1.2;color:var(--bx);}
@@ -114,10 +114,16 @@
 
 <script>
   // 48 half-hour slots, index 0 = 12:00am. slot i -> minutes = i*30.
-  function label(i){
-    let mins=i*30; let h=Math.floor(mins/60); let m=mins%60;
+  function one(mins){
+    mins=((mins%1440)+1440)%1440;
+    let h=Math.floor(mins/60); let m=mins%60;
     const ap=h<12?"am":"pm"; let hh=h%12; if(hh===0)hh=12;
     return hh+":"+(m===0?"00":"30")+" "+ap;
+  }
+  // range label: "5:00 – 5:30 am"
+  function label(i){
+    const startM=i*30, endM=startM+30;
+    return one(startM)+" – "+one(endM);
   }
   // blocks by half-hour index. 5:30am = slot 11. 9:30pm = slot 43.
   // helper: t(h,m)-> slot index
