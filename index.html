@@ -1,229 +1,225 @@
-<title>Fahad's Weekly Planner</title>
+<title>Fahad — Weekly Planner</title>
 <style>
   :root{
     --bg:#eef4fb; --paper:#ffffff; --ink:#233b57; --ink-soft:#6b7a90;
     --line:#e3edf7; --grid-line:#eef3f9; --header:#123a63;
     --time-bg:#eaf3fc; --time-ink:#2f5d8a;
-    --class:#eef7ef; --class-b:#5cb85c;
-    --class2:#eef4fc; --class2-b:#3f7fd6;
-    --class3:#f6eefb; --class3-b:#a855c9;
-    --class4:#eafaf0; --class4-b:#2fa96b;
+    --rm:#eef7ef; --rm-b:#5cb85c;         /* Robot Manipulation - green */
+    --mv:#eef4fc; --mv-b:#3f7fd6;         /* Multiview Geometry - blue */
+    --pr:#eaf4fb; --pr-b:#1f7fc4;         /* Probabilistic Robotics - blue2 */
+    --as:#eafaf0; --as-b:#2fa96b;         /* Autonomous Systems - teal-green */
+    --ml:#f6eefb; --ml-b:#a855c9;         /* Machine Learning - purple */
     --work:#fef3e6; --work-b:#e08a2b;
     --scholar:#e8f4fc; --scholar-b:#1f8fd0;
     --gym:#fdeef7; --gym-b:#c85fa5;
     --study:#eef8f0; --study-b:#4aa863;
     --travel:#e5f1f3; --travel-b:#4f9aa6;
+    --meal:#fcf1d2; --meal-b:#cf9f22;
+    --jummah:#f3ecfb; --jummah-b:#8a5cc9;
     --sleep:#fde9e7; --sleep-b:#e88a84; --sleep-cap:#fbd9d5;
     --tag:#fff6db; --tag-ink:#a9820f; --tag-line:#e8c96a;
-    --wake:#fff4d6; --wake-ink:#b58a1e;
+    --pray:#efeafb; --pray-ink:#6b4bc0; --pray-line:#c3b2ea;
   }
   @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
     --bg:#0e1621; --paper:#141d29; --ink:#e6eef8; --ink-soft:#93a4ba;
     --line:#243244; --grid-line:#1b2634; --header:#16324f;
     --time-bg:#132234; --time-ink:#a6c4e6;
-    --class:#16301c; --class-b:#5cb85c; --class2:#152a44; --class2-b:#5b93d6;
-    --class3:#2c1a38; --class3-b:#bd76dd; --class4:#123528; --class4-b:#48c088;
+    --rm:#16301c; --rm-b:#5cb85c; --mv:#152a44; --mv-b:#5b93d6;
+    --pr:#0f2f47; --pr-b:#4fa6e0; --as:#123528; --as-b:#48c088; --ml:#2c1a38; --ml-b:#bd76dd;
     --work:#402c12; --work-b:#e0a458; --scholar:#0f3348; --scholar-b:#4fb0e6;
     --gym:#331a2c; --gym-b:#d67ac0; --study:#173226; --study-b:#5cbd76;
-    --travel:#0f3034; --travel-b:#68c1cd;
+    --travel:#0f3034; --travel-b:#68c1cd; --meal:#3b3212; --meal-b:#e0c05a;
+    --jummah:#271a3d; --jummah-b:#a888e0;
     --sleep:#3f1e1c; --sleep-b:#e88a84; --sleep-cap:#52201d;
     --tag:#3a3112; --tag-ink:#e6c766; --tag-line:#6a5a1e;
-    --wake:#3a3112; --wake-ink:#e6c766;
+    --pray:#241d3d; --pray-ink:#b8a4ea; --pray-line:#4a3d78;
   }}
   :root[data-theme="dark"]{
     --bg:#0e1621; --paper:#141d29; --ink:#e6eef8; --ink-soft:#93a4ba;
     --line:#243244; --grid-line:#1b2634; --header:#16324f;
     --time-bg:#132234; --time-ink:#a6c4e6;
-    --class:#16301c; --class-b:#5cb85c; --class2:#152a44; --class2-b:#5b93d6;
-    --class3:#2c1a38; --class3-b:#bd76dd; --class4:#123528; --class4-b:#48c088;
+    --rm:#16301c; --rm-b:#5cb85c; --mv:#152a44; --mv-b:#5b93d6;
+    --pr:#0f2f47; --pr-b:#4fa6e0; --as:#123528; --as-b:#48c088; --ml:#2c1a38; --ml-b:#bd76dd;
     --work:#402c12; --work-b:#e0a458; --scholar:#0f3348; --scholar-b:#4fb0e6;
     --gym:#331a2c; --gym-b:#d67ac0; --study:#173226; --study-b:#5cbd76;
-    --travel:#0f3034; --travel-b:#68c1cd;
+    --travel:#0f3034; --travel-b:#68c1cd; --meal:#3b3212; --meal-b:#e0c05a;
+    --jummah:#271a3d; --jummah-b:#a888e0;
     --sleep:#3f1e1c; --sleep-b:#e88a84; --sleep-cap:#52201d;
     --tag:#3a3112; --tag-ink:#e6c766; --tag-line:#6a5a1e;
-    --wake:#3a3112; --wake-ink:#e6c766;
+    --pray:#241d3d; --pray-ink:#b8a4ea; --pray-line:#4a3d78;
   }
   *{box-sizing:border-box;}
   body{background:var(--bg);color:var(--ink);font-family:"Trebuchet MS","Segoe UI",system-ui,sans-serif;margin:0;padding:24px 16px 44px;}
-  .head{max-width:1180px;margin:0 auto 18px;text-align:center;}
+  .head{max-width:1240px;margin:0 auto 18px;text-align:center;}
   .head h1{margin:0;font-size:30px;color:var(--header);letter-spacing:-.5px;}
   .head p{margin:6px 0 0;font-size:13px;color:var(--ink-soft);}
-  .legend{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:14px 0 6px;font-size:11.5px;font-weight:700;}
-  .legend span{padding:4px 11px;border-radius:20px;border:1.5px solid;}
-  .lg-class{background:var(--class);border-color:var(--class-b);color:var(--class-b);}
+  .legend{display:flex;flex-wrap:wrap;justify-content:center;gap:7px;margin:14px 0 6px;font-size:11px;font-weight:700;}
+  .legend span{padding:4px 10px;border-radius:20px;border:1.5px solid;}
+  .lg-class{background:var(--rm);border-color:var(--rm-b);color:var(--rm-b);}
   .lg-scholar{background:var(--scholar);border-color:var(--scholar-b);color:var(--scholar-b);}
   .lg-work{background:var(--work);border-color:var(--work-b);color:var(--work-b);}
   .lg-gym{background:var(--gym);border-color:var(--gym-b);color:var(--gym-b);}
   .lg-study{background:var(--study);border-color:var(--study-b);color:var(--study-b);}
   .lg-travel{background:var(--travel);border-color:var(--travel-b);color:var(--travel-b);}
   .lg-sleep{background:var(--sleep-cap);border-color:var(--sleep-b);color:var(--sleep-b);}
-  .scroll{overflow-x:auto;max-width:1180px;margin:0 auto;}
-  table{border-collapse:separate;border-spacing:0;width:100%;min-width:980px;background:var(--paper);border-radius:14px;overflow:hidden;box-shadow:0 6px 26px rgba(20,50,90,.10);}
-  thead th{background:var(--header);color:#fff;font-size:15px;font-weight:700;padding:12px 6px;border-right:1px solid rgba(255,255,255,.12);}
+  .scroll{overflow-x:auto;max-width:1240px;margin:0 auto;}
+  table{border-collapse:separate;border-spacing:0;width:100%;min-width:1040px;background:var(--paper);border-radius:14px;overflow:hidden;box-shadow:0 6px 26px rgba(20,50,90,.10);table-layout:fixed;}
+  thead th{background:var(--header);color:#fff;font-size:14px;font-weight:700;padding:12px 6px;border-right:1px solid rgba(255,255,255,.12);}
   thead th:last-child{border-right:none;}
-  .dcol{width:12.3%;}
-  tbody td{height:19px;border-right:1px solid var(--grid-line);border-bottom:1px solid var(--grid-line);padding:0;vertical-align:top;}
+  col.timecol{width:118px;}
+  col.daycol{width:calc((100% - 118px)/7);}
+  /* EVERY slot cell identical height so grid is uniform */
+  tbody td{height:22px;border-right:1px solid var(--grid-line);border-bottom:1px solid var(--grid-line);padding:0;vertical-align:top;}
   tbody td:last-child{border-right:none;}
   tbody tr.hourline td{border-bottom:1px solid var(--line);}
-  td.time{background:var(--time-bg);color:var(--time-ink);font-weight:700;font-size:10px;white-space:nowrap;text-align:center;width:120px;vertical-align:middle;}
-  td.time.half{color:var(--ink-soft);font-weight:500;font-size:9px;}
-  .box{position:relative;height:100%;margin:3px;border:2px solid var(--bx,#ccc);background:var(--bxf,#fff);border-radius:9px;padding:6px 7px;display:flex;flex-direction:column;justify-content:center;text-align:center;}
-  .box .title{font-size:12px;font-weight:700;line-height:1.2;color:var(--bx);}
-  .box .tag{position:absolute;top:5px;right:5px;background:var(--tag);color:var(--tag-ink);border:1px solid var(--tag-line);font-size:8.5px;font-weight:700;padding:1px 6px;border-radius:6px;}
-  .box .room{align-self:center;margin-top:6px;background:var(--tag);color:var(--tag-ink);border:1px solid var(--tag-line);font-size:9px;font-weight:700;padding:2px 8px;border-radius:6px;}
-  .b-class{--bx:var(--class-b);--bxf:var(--class);}
-  .b-class2{--bx:var(--class2-b);--bxf:var(--class2);}
-  .b-class3{--bx:var(--class3-b);--bxf:var(--class3);}
-  .b-class4{--bx:var(--class4-b);--bxf:var(--class4);}
+  td.time{background:var(--time-bg);color:var(--time-ink);font-weight:700;font-size:9.5px;white-space:nowrap;text-align:center;vertical-align:middle;}
+  td.time.half{color:var(--ink-soft);font-weight:500;font-size:8.5px;}
+  .box{position:relative;height:100%;margin:2px;border:2px solid var(--bx,#ccc);background:var(--bxf,#fff);border-radius:8px;padding:5px 6px;display:flex;flex-direction:column;justify-content:center;text-align:center;}
+  .box .title{font-size:11.5px;font-weight:700;line-height:1.2;color:var(--bx);}
+  .box .tag{position:absolute;top:4px;right:4px;background:var(--tag);color:var(--tag-ink);border:1px solid var(--tag-line);font-size:8px;font-weight:700;padding:1px 6px;border-radius:6px;}
+  .box .room{align-self:center;margin-top:5px;background:var(--tag);color:var(--tag-ink);border:1px solid var(--tag-line);font-size:8.5px;font-weight:700;padding:1px 7px;border-radius:6px;}
+  .box .pray{position:absolute;top:4px;left:4px;background:var(--pray);color:var(--pray-ink);border:1px solid var(--pray-line);font-size:8px;font-weight:700;padding:1px 6px;border-radius:6px;}
+  .b-rm{--bx:var(--rm-b);--bxf:var(--rm);}
+  .b-mv{--bx:var(--mv-b);--bxf:var(--mv);}
+  .b-pr{--bx:var(--pr-b);--bxf:var(--pr);}
+  .b-as{--bx:var(--as-b);--bxf:var(--as);}
+  .b-ml{--bx:var(--ml-b);--bxf:var(--ml);}
   .b-work{--bx:var(--work-b);--bxf:var(--work);}
   .b-scholar{--bx:var(--scholar-b);--bxf:var(--scholar);}
   .b-gym{--bx:var(--gym-b);--bxf:var(--gym);}
   .b-study{--bx:var(--study-b);--bxf:var(--study);}
   .b-travel{--bx:var(--travel-b);--bxf:var(--travel);}
-  td.wake{background:var(--wake);color:var(--wake-ink);font-weight:800;font-size:11px;text-align:center;vertical-align:middle;}
-  td.sleepcap{background:var(--sleep-cap);color:var(--sleep-b);font-weight:800;font-size:11px;text-align:center;vertical-align:top;padding-top:5px;}
-  .sleepbox{margin:4px 3px 3px;height:calc(100% - 22px);min-height:120px;background:var(--sleep);border:2px solid var(--sleep-b);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;color:var(--sleep-b);}
+  .b-meal{--bx:var(--meal-b);--bxf:var(--meal);}
+  .b-jummah{--bx:var(--jummah-b);--bxf:var(--jummah);}
+  td.sleepcap{background:var(--sleep-cap);color:var(--sleep-b);font-weight:800;font-size:10px;text-align:center;vertical-align:top;padding-top:5px;}
+  .sleepbox{margin:4px 2px 2px;height:calc(100% - 22px);min-height:150px;background:var(--sleep);border:2px solid var(--sleep-b);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:var(--sleep-b);}
   .toggle{position:fixed;top:14px;right:14px;background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:7px 14px;font-size:12px;font-weight:700;color:var(--ink);cursor:pointer;box-shadow:0 3px 12px rgba(20,50,90,.15);z-index:20;}
-  .note{max-width:1180px;margin:16px auto 0;font-size:12px;color:var(--ink-soft);text-align:center;line-height:1.6;}
+  .note{max-width:1240px;margin:16px auto 0;font-size:12px;color:var(--ink-soft);text-align:center;line-height:1.6;}
 </style>
 
 <button class="toggle" id="themeBtn">🌓 Theme</button>
 
 <div class="head">
-  <h1>🗓️ Fahad — Weekly Planner</h1>
-  <p>Salt / UdG · Sem 1 · 30-min slots · wake 5:30 · sleep 9:30 · 30h work + 15h scholarship</p>
+  <h1>📅 Fahad — Weekly Planner</h1>
+  <p>Salt / UdG · Sem 1 · 30-min slots · wake 5:30 am · sleep 9:30 pm · 30h work + 15h scholarship</p>
   <div class="legend">
-    <span class="lg-class">📚 Class</span><span class="lg-scholar">🔬 Scholarship</span>
-    <span class="lg-work">💼 Work</span><span class="lg-gym">🏋️ Gym</span>
-    <span class="lg-study">📖 Study</span><span class="lg-travel">🚌 Travel</span>
-    <span class="lg-sleep">😴 Sleep</span>
+    <span class="lg-class">Class</span><span class="lg-scholar">Scholarship</span>
+    <span class="lg-work">Work</span><span class="lg-gym">Gym</span>
+    <span class="lg-study">Study</span><span class="lg-travel">Travel</span>
+    <span class="lg-sleep">Sleep</span>
   </div>
 </div>
 
 <div class="scroll">
   <table>
+    <colgroup>
+      <col class="timecol"><col class="daycol"><col class="daycol"><col class="daycol">
+      <col class="daycol"><col class="daycol"><col class="daycol"><col class="daycol">
+    </colgroup>
     <thead><tr>
-      <th>🕐 Time</th><th class="dcol">Monday</th><th class="dcol">Tuesday</th><th class="dcol">Wednesday</th>
-      <th class="dcol">Thursday</th><th class="dcol">Friday</th><th class="dcol">Saturday</th><th class="dcol">Sunday</th>
+      <th>🕐 Time</th><th>Monday</th><th>Tuesday</th><th>Wednesday</th>
+      <th>Thursday</th><th>Friday</th><th>Saturday</th><th>Sunday</th>
     </tr></thead>
     <tbody id="grid"></tbody>
   </table>
 </div>
 
-<p class="note">30-minute slots. Boxes span their full time range. Prayers: Fajr on waking · Dhuhr lunch · Asr afternoon break · Maghrib dinner · Isha pre-sleep — use a prayer app for exact daily times. Jummah Friday protected. Heavy week — drop a weekend shift if too much.</p>
+<p class="note">All classes shown separately with room + Lab/Theory tag. Travel same time daily (7:00–8:00 am on class days). Prayer labels appear on work/study boxes where a prayer falls in that period. Sleep 9:30 pm – 5:30 am as one block. Use a prayer app for exact daily times; Jummah Friday protected.</p>
 
 <script>
-  // 48 half-hour slots, index 0 = 12:00am. slot i -> minutes = i*30.
-  function one(mins){
-    mins=((mins%1440)+1440)%1440;
-    let h=Math.floor(mins/60); let m=mins%60;
-    const ap=h<12?"am":"pm"; let hh=h%12; if(hh===0)hh=12;
-    return hh+":"+(m===0?"00":"30")+" "+ap;
-  }
-  // range label: "5:00 – 5:30 am"
-  function label(i){
-    const startM=i*30, endM=startM+30;
-    return one(startM)+" – "+one(endM);
-  }
-  // blocks by half-hour index. 5:30am = slot 11. 9:30pm = slot 43.
-  // helper: t(h,m)-> slot index
+  function one(mins){mins=((mins%1440)+1440)%1440;let h=Math.floor(mins/60);let m=mins%60;const ap=h<12?"am":"pm";let hh=h%12;if(hh===0)hh=12;return hh+":"+(m===0?"00":"30")+" "+ap;}
+  function label(i){const s=i*30;return one(s)+" – "+one(s+30);}
   const t=(h,m)=>h*2+(m>=30?1:0);
+  const WAKE=t(5,30); // 11
+  // block types: class (b-rm/mv/pr/as/ml with tag+room, NO emoji), scholar, work(with pray), gym, study, travel, meal, jummah, sleep
   const days={
     Monday:[
-      {s:t(5,30),e:t(6,0),type:"wake"},
-      {s:t(6,0),e:t(8,0),cls:"b-study",title:"📖 Study + breakfast"},
-      {s:t(8,0),e:t(9,0),cls:"b-travel",title:"🚌 Travel"},
-      {s:t(9,0),e:t(14,0),cls:"b-class",title:"📚 Robot Manipulation",tag:"Lab",room:"Robotics Lab"},
-      {s:t(14,0),e:t(15,0),cls:"b-study",title:"🍽️ Dhuhr + lunch"},
-      {s:t(15,0),e:t(18,0),cls:"b-scholar",title:"🔬 VICOROB Scholarship",tag:"Research",room:"VICOROB"},
-      {s:t(18,0),e:t(19,0),cls:"b-gym",title:"🏋️ Gym"},
-      {s:t(19,0),e:t(21,30),cls:"b-study",title:"📖 Maghrib · dinner · study · Isha"},
-      {s:t(21,30),e:48,type:"sleep"}
+      {s:t(6,0),e:t(7,0),cls:"b-meal",title:"Breakfast"},
+      {s:t(7,0),e:t(8,0),cls:"b-travel",title:"Travel"},
+      {s:t(8,0),e:t(9,0),cls:"b-study",title:"Study",room:"1 hr @ Uni"},
+      {s:t(9,0),e:t(11,0),cls:"b-rm",title:"Robot Manipulation",tag:"Lab",room:"Robotics Lab"},
+      {s:t(11,0),e:t(13,0),cls:"b-mv",title:"Multiview Geometry",tag:"Theory",room:"Room TBA"},
+      {s:t(13,0),e:t(14,0),cls:"b-rm",title:"Robot Manipulation",tag:"Lab",room:"Robotics Lab"},
+      {s:t(14,0),e:t(15,0),cls:"b-meal",title:"Lunch",pray:"Dhuhr"},
+      {s:t(15,0),e:t(18,0),cls:"b-scholar",title:"VICOROB Scholarship",tag:"Research",room:"VICOROB",pray:"Asr"},
+      {s:t(18,0),e:t(19,0),cls:"b-gym",title:"Gym"},
+      {s:t(19,0),e:t(21,30),cls:"b-study",title:"Dinner · Study",pray:"Maghrib/Isha"},
+      {type:"sleep"}
     ],
     Tuesday:[
-      {s:t(5,30),e:t(6,0),type:"wake"},
-      {s:t(6,0),e:t(7,0),cls:"b-study",title:"🍽️ Breakfast"},
-      {s:t(7,0),e:t(8,0),cls:"b-travel",title:"🚌 Travel"},
-      {s:t(8,0),e:t(13,0),cls:"b-class2",title:"📚 Probabilistic Robotics · Autonomous Systems",tag:"Lab",room:"Robotics Lab"},
-      {s:t(13,0),e:t(13,30),cls:"b-study",title:"🍽️ Lunch"},
-      {s:t(13,30),e:t(14,0),cls:"b-travel",title:"🚌 Home"},
-      {s:t(14,0),e:t(17,0),cls:"b-scholar",title:"🔬 VICOROB Scholarship",tag:"Research",room:"VICOROB"},
-      {s:t(17,0),e:t(18,0),cls:"b-study",title:"📖 Study · Asr"},
-      {s:t(18,0),e:t(21,0),cls:"b-work",title:"💼 Work — Mercadona",tag:"Job",room:"6–9 pm"},
-      {s:t(21,0),e:t(21,30),cls:"b-study",title:"🍽️ Dinner · Isha"},
-      {s:t(21,30),e:48,type:"sleep"}
+      {s:t(6,0),e:t(7,0),cls:"b-meal",title:"Breakfast"},
+      {s:t(7,0),e:t(8,0),cls:"b-travel",title:"Travel"},
+      {s:t(8,0),e:t(10,0),cls:"b-pr",title:"Probabilistic Robotics",tag:"Lab",room:"Robotics Lab"},
+      {s:t(10,0),e:t(11,0),cls:"b-as",title:"Autonomous Systems",tag:"Theory",room:"Room TBA"},
+      {s:t(11,0),e:t(13,0),cls:"b-as",title:"Autonomous Systems",tag:"Lab",room:"Robotics Lab"},
+      {s:t(13,0),e:t(13,30),cls:"b-meal",title:"Lunch",pray:"Dhuhr"},
+      {s:t(13,30),e:t(14,0),cls:"b-travel",title:"Travel"},
+      {s:t(14,0),e:t(17,0),cls:"b-scholar",title:"VICOROB Scholarship",tag:"Research",room:"VICOROB",pray:"Asr"},
+      {s:t(17,0),e:t(18,0),cls:"b-study",title:"Study"},
+      {s:t(18,0),e:t(21,0),cls:"b-work",title:"Work — Mercadona",tag:"Job",room:"6–9 pm",pray:"Maghrib/Isha"},
+      {s:t(21,0),e:t(21,30),cls:"b-meal",title:"Dinner"},
+      {type:"sleep"}
     ],
     Wednesday:[
-      {s:t(5,30),e:t(6,0),type:"wake"},
-      {s:t(6,0),e:t(7,0),cls:"b-study",title:"🍽️ Breakfast"},
-      {s:t(7,0),e:t(8,0),cls:"b-travel",title:"🚌 Travel"},
-      {s:t(8,0),e:t(11,0),cls:"b-class3",title:"📚 Prob. Robotics · Machine Learning",tag:"Theory",room:"Lecture P4"},
-      {s:t(11,0),e:t(11,30),cls:"b-travel",title:"🚌 Home"},
-      {s:t(11,30),e:t(14,30),cls:"b-scholar",title:"🔬 VICOROB Scholarship",tag:"Research",room:"VICOROB"},
-      {s:t(14,30),e:t(15,30),cls:"b-study",title:"🍽️ Lunch · Dhuhr"},
-      {s:t(15,30),e:t(18,30),cls:"b-work",title:"💼 Work — Mercadona",tag:"Job",room:"3:30–6:30"},
-      {s:t(18,30),e:t(21,30),cls:"b-study",title:"📖 Maghrib · dinner · study · Isha"},
-      {s:t(21,30),e:48,type:"sleep"}
+      {s:t(6,0),e:t(7,0),cls:"b-meal",title:"Breakfast"},
+      {s:t(7,0),e:t(8,0),cls:"b-travel",title:"Travel"},
+      {s:t(8,0),e:t(10,0),cls:"b-pr",title:"Probabilistic Robotics",tag:"Theory",room:"Lecture P4"},
+      {s:t(10,0),e:t(11,30),cls:"b-ml",title:"Machine Learning",tag:"Theory",room:"Lecture P4"},
+      {s:t(11,30),e:t(12,0),cls:"b-travel",title:"Travel"},
+      {s:t(12,0),e:t(14,30),cls:"b-scholar",title:"VICOROB Scholarship",tag:"Research",room:"VICOROB"},
+      {s:t(14,30),e:t(15,30),cls:"b-meal",title:"Lunch",pray:"Dhuhr"},
+      {s:t(15,30),e:t(18,30),cls:"b-work",title:"Work — Mercadona",tag:"Job",room:"3:30–6:30",pray:"Asr"},
+      {s:t(18,30),e:t(21,30),cls:"b-study",title:"Dinner · Study",pray:"Maghrib/Isha"},
+      {type:"sleep"}
     ],
     Thursday:[
-      {s:t(5,30),e:t(6,0),type:"wake"},
-      {s:t(6,0),e:t(7,0),cls:"b-study",title:"🍽️ Breakfast"},
-      {s:t(7,0),e:t(8,0),cls:"b-travel",title:"🚌 Travel"},
-      {s:t(8,0),e:t(13,0),cls:"b-class4",title:"📚 Robot Manip · Multiview · ML",tag:"Lab",room:"Robotics Lab"},
-      {s:t(13,0),e:t(14,0),cls:"b-study",title:"🍽️ Dhuhr + lunch"},
-      {s:t(14,0),e:t(17,0),cls:"b-scholar",title:"🔬 VICOROB Scholarship",tag:"Research",room:"VICOROB"},
-      {s:t(17,0),e:t(18,0),cls:"b-study",title:"📖 Study · Asr"},
-      {s:t(18,0),e:t(19,0),cls:"b-gym",title:"🏋️ Gym"},
-      {s:t(19,0),e:t(21,30),cls:"b-study",title:"📖 Maghrib · dinner · study · Isha"},
-      {s:t(21,30),e:48,type:"sleep"}
+      {s:t(6,0),e:t(7,0),cls:"b-meal",title:"Breakfast"},
+      {s:t(7,0),e:t(8,0),cls:"b-travel",title:"Travel"},
+      {s:t(8,0),e:t(10,0),cls:"b-rm",title:"Robot Manipulation",tag:"Theory",room:"Lecture P4"},
+      {s:t(10,0),e:t(11,0),cls:"b-mv",title:"Multiview Geometry",tag:"Lab",room:"Robotics Lab"},
+      {s:t(11,0),e:t(12,30),cls:"b-ml",title:"Machine Learning",tag:"Lab",room:"Robotics Lab"},
+      {s:t(12,30),e:t(13,30),cls:"b-meal",title:"Lunch",pray:"Dhuhr"},
+      {s:t(13,30),e:t(14,0),cls:"b-travel",title:"Travel"},
+      {s:t(14,0),e:t(17,0),cls:"b-scholar",title:"VICOROB Scholarship",tag:"Research",room:"VICOROB",pray:"Asr"},
+      {s:t(17,0),e:t(18,0),cls:"b-study",title:"Study"},
+      {s:t(18,0),e:t(19,0),cls:"b-gym",title:"Gym"},
+      {s:t(19,0),e:t(21,30),cls:"b-study",title:"Dinner · Study",pray:"Maghrib/Isha"},
+      {type:"sleep"}
     ],
     Friday:[
-      {s:t(5,30),e:t(6,0),type:"wake"},
-      {s:t(6,0),e:t(8,0),cls:"b-study",title:"📖 Deep study + breakfast"},
-      {s:t(8,0),e:t(11,0),cls:"b-scholar",title:"🔬 VICOROB Scholarship",tag:"Research",room:"VICOROB"},
-      {s:t(11,0),e:t(14,0),cls:"b-class3",title:"🕌 Jummah + lunch",tag:"Mosque",room:"Salt"},
-      {s:t(14,0),e:t(18,30),cls:"b-work",title:"💼 Work — Mercadona",tag:"Job",room:"2–6:30 pm"},
-      {s:t(18,30),e:t(21,30),cls:"b-study",title:"📖 Maghrib · dinner · study · Isha"},
-      {s:t(21,30),e:48,type:"sleep"}
+      {s:t(6,0),e:t(8,0),cls:"b-study",title:"Deep Study · Breakfast"},
+      {s:t(8,0),e:t(11,0),cls:"b-scholar",title:"VICOROB Scholarship",tag:"Research",room:"VICOROB"},
+      {s:t(11,0),e:t(14,0),cls:"b-jummah",title:"Jummah · Lunch",tag:"Mosque",room:"Salt",pray:"Jummah"},
+      {s:t(14,0),e:t(18,30),cls:"b-work",title:"Work — Mercadona",tag:"Job",room:"2–6:30 pm",pray:"Asr"},
+      {s:t(18,30),e:t(21,30),cls:"b-study",title:"Dinner · Study",pray:"Maghrib/Isha"},
+      {type:"sleep"}
     ],
     Saturday:[
-      {s:t(5,30),e:t(6,0),type:"wake"},
-      {s:t(6,0),e:t(8,30),cls:"b-study",title:"📖 Study + breakfast"},
-      {s:t(8,30),e:t(9,0),cls:"b-travel",title:"🚶 Walk"},
-      {s:t(9,0),e:t(18,0),cls:"b-work",title:"💼 Work — Mercadona",tag:"Job",room:"9 am – 6 pm"},
-      {s:t(18,0),e:t(21,30),cls:"b-study",title:"📖 Maghrib · dinner · study · Isha"},
-      {s:t(21,30),e:48,type:"sleep"}
+      {s:t(6,0),e:t(8,30),cls:"b-study",title:"Study · Breakfast"},
+      {s:t(8,30),e:t(9,0),cls:"b-travel",title:"Walk to work"},
+      {s:t(9,0),e:t(18,0),cls:"b-work",title:"Work — Mercadona",tag:"Job",room:"9 am – 6 pm",pray:"Dhuhr/Asr"},
+      {s:t(18,0),e:t(21,30),cls:"b-study",title:"Dinner · Study",pray:"Maghrib/Isha"},
+      {type:"sleep"}
     ],
     Sunday:[
-      {s:t(5,30),e:t(6,0),type:"wake"},
-      {s:t(6,0),e:t(8,30),cls:"b-study",title:"📖 Study + breakfast"},
-      {s:t(8,30),e:t(9,0),cls:"b-travel",title:"🚶 Walk"},
-      {s:t(9,0),e:t(17,0),cls:"b-work",title:"💼 Work — Mercadona",tag:"Job",room:"9 am – 5 pm"},
-      {s:t(17,0),e:t(21,30),cls:"b-study",title:"📖 Rest · Maghrib · dinner · Isha"},
-      {s:t(21,30),e:48,type:"sleep"}
+      {s:t(6,0),e:t(8,30),cls:"b-study",title:"Study · Breakfast"},
+      {s:t(8,30),e:t(9,0),cls:"b-travel",title:"Walk to work"},
+      {s:t(9,0),e:t(17,0),cls:"b-work",title:"Work — Mercadona",tag:"Job",room:"9 am – 5 pm",pray:"Dhuhr/Asr"},
+      {s:t(17,0),e:t(21,30),cls:"b-study",title:"Rest · Dinner · Study",pray:"Maghrib/Isha"},
+      {type:"sleep"}
     ]
   };
   const order=["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
-  // Sleep runs 9:30pm(43) -> 5:30am(11) next day = one continuous block.
-  // Render the day rotated: start at slot 11 (5:30am) and go 48 slots forward, wrapping past midnight.
-  // Sleep block is defined as slot 43 with span reaching the rotated end.
-  const WAKE=11;              // 5:30am
-  const START=WAKE;           // grid starts at 5:30am
-  // Build ordered slot list: 11,12,...,47,0,1,...,10  (48 rows, 5:30am -> 5:00am)
-  const rowSlots=[];for(let k=0;k<48;k++)rowSlots.push((START+k)%48);
+  const rowSlots=[];for(let k=0;k<48;k++)rowSlots.push((WAKE+k)%48);
   const dayMap={};
   for(const d of order){
     const map=Array(48).fill(null);
-    // the single sleep block object for this day, covering 9:30pm(43)->5:30am(11)
     const sleepBlock={type:"sleep"};
     for(const b of days[d]){
       if(b.type==="sleep"){
-        // mark 43..47 (9:30pm-midnight) AND 0..10 (midnight-5:30am) as this one sleep block
-        for(let h=43;h<48;h++)map[h]={b:sleepBlock,start:h===43};
+        for(let h=t(21,30);h<48;h++)map[h]={b:sleepBlock,start:h===t(21,30)};
         for(let h=0;h<WAKE;h++)map[h]={b:sleepBlock,start:false};
-      } else {
-        for(let h=b.s;h<b.e;h++)map[h]={b,start:h===b.s};
-      }
+      } else { for(let h=b.s;h<b.e;h++)map[h]={b,start:h===b.s}; }
     }
     dayMap[d]=map;
   }
@@ -239,15 +235,16 @@
       const td=document.createElement("td");
       if(!slot){tr.appendChild(td);continue;}
       const b=slot.b;
-      // rowspan: count consecutive rendered rows belonging to the SAME block object
       let span=0;for(let k=r;k<48;k++){const s2=rowSlots[k];const sl=dayMap[d][s2];if(sl&&sl.b===b)span++;else break;}
       td.rowSpan=span||1;
-      if(b.type==="wake"){td.className="wake";td.textContent="5:30 am";}
-      else if(b.type==="sleep"){td.className="sleepcap";td.innerHTML='9:30 pm – 5:30 am<div class="sleepbox">😴 Sleep &nbsp;(8 hrs)</div>';}
+      if(b.type==="sleep"){td.className="sleepcap";td.innerHTML='9:30 pm – 5:30 am<div class="sleepbox">😴 Sleep (8 hrs)</div>';}
       else{
         const box=document.createElement("div");box.className="box "+b.cls;
-        let html="";if(b.tag)html+='<span class="tag">'+b.tag+'</span>';
-        html+='<span class="title">'+b.title+'</span>';if(b.room)html+='<span class="room">'+b.room+'</span>';
+        let html="";
+        if(b.pray)html+='<span class="pray">🕌 '+b.pray+'</span>';
+        if(b.tag)html+='<span class="tag">'+b.tag+'</span>';
+        html+='<span class="title">'+b.title+'</span>';
+        if(b.room)html+='<span class="room">'+b.room+'</span>';
         box.innerHTML=html;td.appendChild(box);
       }
       tr.appendChild(td);
