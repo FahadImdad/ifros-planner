@@ -82,7 +82,7 @@
   .b-travel{--bx:var(--travel-b);--bxf:var(--travel);}
   td.wake{background:var(--wake);color:var(--wake-ink);font-weight:800;font-size:11px;text-align:center;vertical-align:middle;}
   td.sleepcap{background:var(--sleep-cap);color:var(--sleep-b);font-weight:800;font-size:11px;text-align:center;vertical-align:top;padding-top:5px;}
-  .sleepbox{margin:4px 0 0;height:calc(100% - 20px);min-height:60px;background:var(--sleep);border:2px solid var(--sleep-b);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:var(--sleep-b);}
+  .sleepbox{margin:4px 3px 3px;height:calc(100% - 22px);min-height:120px;background:var(--sleep);border:2px solid var(--sleep-b);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;color:var(--sleep-b);}
   .toggle{position:fixed;top:14px;right:14px;background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:7px 14px;font-size:12px;font-weight:700;color:var(--ink);cursor:pointer;box-shadow:0 3px 12px rgba(20,50,90,.15);z-index:20;}
   .note{max-width:1180px;margin:16px auto 0;font-size:12px;color:var(--ink-soft);text-align:center;line-height:1.6;}
 </style>
@@ -198,10 +198,32 @@
     ]
   };
   const order=["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
+  // Sleep runs 9:30pm(43) -> 5:30am(11) next day = one continuous block.
+  // Render the day rotated: start at slot 11 (5:30am) and go 48 slots forward, wrapping past midnight.
+  // Sleep block is defined as slot 43 with span reaching the rotated end.
+  const WAKE=11;              // 5:30am
+  const START=WAKE;           // grid starts at 5:30am
+  // Build ordered slot list: 11,12,...,47,0,1,...,10  (48 rows, 5:30am -> 5:00am)
+  const rowSlots=[];for(let k=0;k<48;k++)rowSlots.push((START+k)%48);
   const dayMap={};
-  for(const d of order){const map=Array(48).fill(null);for(const b of days[d]){for(let h=b.s;h<b.e;h++)map[h]={b,start:h===b.s};}dayMap[d]=map;}
+  for(const d of order){
+    const map=Array(48).fill(null);
+    // the single sleep block object for this day, covering 9:30pm(43)->5:30am(11)
+    const sleepBlock={type:"sleep"};
+    for(const b of days[d]){
+      if(b.type==="sleep"){
+        // mark 43..47 (9:30pm-midnight) AND 0..10 (midnight-5:30am) as this one sleep block
+        for(let h=43;h<48;h++)map[h]={b:sleepBlock,start:h===43};
+        for(let h=0;h<WAKE;h++)map[h]={b:sleepBlock,start:false};
+      } else {
+        for(let h=b.s;h<b.e;h++)map[h]={b,start:h===b.s};
+      }
+    }
+    dayMap[d]=map;
+  }
   const grid=document.getElementById("grid");
-  for(let i=0;i<48;i++){
+  for(let r=0;r<48;r++){
+    const i=rowSlots[r];
     const tr=document.createElement("tr");
     if(i%2===0)tr.className="hourline";
     const tc=document.createElement("td");tc.className="time"+(i%2?" half":"");tc.textContent=label(i);tr.appendChild(tc);
@@ -210,9 +232,12 @@
       if(slot && !slot.start) continue;
       const td=document.createElement("td");
       if(!slot){tr.appendChild(td);continue;}
-      const b=slot.b;td.rowSpan=b.e-b.s;
+      const b=slot.b;
+      // rowspan: count consecutive rendered rows belonging to the SAME block object
+      let span=0;for(let k=r;k<48;k++){const s2=rowSlots[k];const sl=dayMap[d][s2];if(sl&&sl.b===b)span++;else break;}
+      td.rowSpan=span||1;
       if(b.type==="wake"){td.className="wake";td.textContent="5:30 am";}
-      else if(b.type==="sleep"){td.className="sleepcap";td.innerHTML='9:30 pm<div class="sleepbox">😴 Sleep</div>';}
+      else if(b.type==="sleep"){td.className="sleepcap";td.innerHTML='9:30 pm – 5:30 am<div class="sleepbox">😴 Sleep &nbsp;(8 hrs)</div>';}
       else{
         const box=document.createElement("div");box.className="box "+b.cls;
         let html="";if(b.tag)html+='<span class="tag">'+b.tag+'</span>';
